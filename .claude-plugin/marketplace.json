@@ -1,0 +1,22 @@
+{
+  "name": "design-system-generator",
+  "metadata": {
+    "description": "Generate a complete, client-ready brand/design system as a single-file HTML page from a website URL — scrape real colours & fonts, build the system, deploy to Netlify."
+  },
+  "owner": {
+    "name": "Victor Shulga",
+    "url": "https://github.com/victor-shulga"
+  },
+  "plugins": [
+    {
+      "name": "design-system-generator",
+      "source": "./",
+      "description": "URL -> real palette/fonts (WP-noise filtered) -> single-file HTML design system (hero, colour, type, components, signature blocks, proposal bridge) -> Netlify deploy. The B2B Global client design-system flow.",
+      "version": "0.1.0",
+      "keywords": ["design-system", "brand", "design-tokens", "html", "netlify", "agency"],
+      "author": {
+        "name": "Victor Shulga / B2B Global"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "design-system-generator",
+  "version": "0.1.0",
+  "description": "From a website URL: scrape the live site for REAL brand colours and fonts (filtering WordPress/Gutenberg default-palette noise), then build an elevated-but-recognizable single-file HTML design system — hero, logo, colour, type, spacing, buttons, tags, stats, cards, 1-2 signature components, pricing table, callout, voice, and a proposal bridge — preview it locally and deploy to Netlify under a clean subdomain. The repeatable B2B Global client design-system flow (built for Karno Energy and Codelibry).",
+  "author": {
+    "name": "Victor Shulga / B2B Global",
+    "url": "https://github.com/victor-shulga"
+  },
+  "keywords": ["design-system", "brand", "branding", "design-tokens", "html", "netlify", "agency", "b2b", "style-guide"],
+  "license": "MIT",
+  "skills": "./skills/"
+}
