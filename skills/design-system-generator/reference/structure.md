@@ -14,9 +14,9 @@
 7. **Tags & badges** — stack pills + trust pills + status dots.
 8. **Stats / trust bar** — 4 real numbers from the site (proof that closes).
 9. **Cards** — 2 service cards + 2 case-study cards (gradient cover + result metrics).
-10. **Signature component(s)** — the client's OWN methodology rendered reusable (Karno:
-    8-step Buildable BIM Framework; Codelibry: 5-step Delivery Pipeline + Fixed-Price
-    Estimate card). This is the spine of future proposals — make it strong.
+10. **Signature component(s)** — the client's OWN methodology rendered reusable (e.g. an
+    N-step delivery framework; or a process pipeline + a pricing/estimate card). This is the
+    spine of future proposals — make it strong.
 11. **Pricing / scope table** — dark header, mono prices, zebra rows, `£X,XXX` placeholders.
 12. **Callout / quote** — one real positioning line or testimonial, accent left-bar.
 13. **Voice & tone** — voice chips + Do / Don't columns using the client's real copy.
@@ -47,17 +47,17 @@ labels, hover lift on cards. Mobile: hide TOC, shrink hero H1, collapse grids to
 - Display = geometric/grotesque (Space Grotesk, Plus Jakarta Sans, Archivo, Clash) for warmth/structure.
 - Body = **Inter** (default workhorse) or the site's real body font if clean.
 - Character = the differentiator:
-  - Engineering / construction / data → **IBM Plex Mono** (specs, ISO codes) — Karno.
-  - Software / dev / "code" brands → **JetBrains Mono** / Geist Mono — Codelibry.
+  - Engineering / construction / data → **IBM Plex Mono** (specs, ISO codes).
+  - Software / dev / "code" brands → **JetBrains Mono** / Geist Mono.
   - Finance / legal → a serif accent (e.g. Fraunces) instead of mono.
   Use the character font for mono labels, stat captions, tags, prices.
 
 ## Distinctiveness rule
 Every client must look different: vary the hero motif, corner radius (corporate = 6-10px
 sharper; friendly = 12-18px rounder), accent discipline, and the signature component(s).
-Never ship two clients with the same layout — reference Karno & Codelibry as two poles.
+Never ship two clients with the same layout — use the engineering vs dev archetypes as two poles.
 
 ## Port & deploy bookkeeping
-Local preview ports used: Karno 4607, Codelibry 4608 → take the next free 460X.
+Take the next free 460X/461X port (check existing `.claude/launch.json` entries).
 Deploy: `npx netlify-cli deploy --dir . --prod` then rename via `api updateSite` with the
 UUID from `.netlify/state.json`. Final URL: `https://<client>-design-system.netlify.app`.

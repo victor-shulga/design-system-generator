@@ -30,18 +30,18 @@ Also generic: pure `#ffffff/#fff`, `#000000/#000`, `#f5f5f5`, `#e3e3e3`, `#ccccc
 
 ## Classify what's left (frequency-ranked custom hexes)
 - **Hero accent** = the most-frequent SATURATED color (high chroma). Usually 1, sometimes a
-  warm secondary too. (Karno #0054A2 blue; Codelibry #12CF71 green + #FFA033 orange.)
+  warm secondary too. (e.g. a single corporate blue; or a green hero + a warm orange.)
 - **Ink / base** = the dominant very-dark color (often near-black, sometimes hue-tinted).
-  (Karno #1C1C1C charcoal; Codelibry #02150B near-black green.)
-- **Tints** = light versions of the accent (Codelibry #B2FFD9 mint).
+  (e.g. a charcoal `#1C1C1C`; or a near-black green `#02150B`.)
+- **Tints** = light versions of the accent (e.g. a mint tint of a green hero).
 - **Neutrals** = greys for paper/lines.
 
 Quick saturation gut-check: convert hex→HSL mentally; S>40% & L 30–70% = accent candidate;
 L<15% = ink; S<12% = neutral.
 
-## Worked examples
-- **Karno** (`karnoenergy.co.uk`): #1C1C1C ×21 (ink, base) + #0054A2 (blue accent) were real;
+## Worked examples (anonymised)
+- **Engineering/construction site:** #1C1C1C ×21 (ink, base) + #0054A2 (blue accent) were real;
   every #0693e3/#00d084/#9b51e0/#ff6900 was WP noise. → charcoal + engineering blue.
-- **Codelibry** (`codelibry.com`): #12CF71 ×73 (green hero) + #FFA033 ×80 (orange) + #B2FFD9
+- **Dev/software site:** #12CF71 ×73 (green hero) + #FFA033 ×80 (orange) + #B2FFD9
   ×50 (mint tint) + #FF4726 ×22 (coral) + #02150B (ink) were real; the rest WP defaults.
   → green-forward, dev character.
