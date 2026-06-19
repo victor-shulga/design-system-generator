@@ -3,11 +3,10 @@
 A Claude Code plugin that turns **a website URL into a complete, client-ready brand/design
 system** — a single self-contained HTML page you can show the client and grow proposals from.
 
-It is the repeatable client flow, codified. Two systems already shipped on this exact
-pattern:
+It is the repeatable Victor Shulga flow, codified. Two archetypes it has produced, as reference poles:
 
-- **an MEP engineering client** (BIM/MEP, UK contractors) — charcoal `#1C1C1C` + engineering blue `#0054A2`, blueprint character.
-- **client B** (white-label Figma→WordPress for agencies) — green `#12CF71` + dev-mono, friendly-SaaS character.
+- **Engineering / construction brand** — charcoal `#1C1C1C` base + a single corporate-blue accent, blueprint character.
+- **Software / dev brand** — a green hero + dev-mono, friendly-SaaS character.
 
 ---
 

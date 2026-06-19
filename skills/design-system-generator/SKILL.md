@@ -2,8 +2,7 @@
 name: design-system-generator
 description: >
   Generates a complete, client-ready brand/design system as a single-file HTML page
-  from a website URL — Viktor's repeatable client flow (built and proven on two client
-  client B). Scrapes the live site for REAL brand colors & fonts (filtering WordPress/
+  from a website URL — Viktor's repeatable client flow. Scrapes the live site for REAL brand colors & fonts (filtering WordPress/
   Gutenberg default-palette noise), grounds tone/ICP/copy, builds an elevated-but-
   recognizable single-file HTML design system (hero, logo, color, type, spacing, buttons,
   tags, stats, cards, 1-2 signature components, pricing table, callout, voice, proposal
@@ -18,11 +17,11 @@ description: >
 # Design System Generator
 
 Viktor's house flow for turning a client's website into a polished, single-file HTML
-design system he can show the client and grow proposals from. Two have shipped on this
-exact pattern: **an MEP engineering client** (charcoal + engineering blue, blueprint character) and
-**client B** (green + dev-mono, friendly-SaaS character). Read those files in
-two client design systems kept in the private workspace
-as gold-standard references before building.
+design system he can show the client and grow proposals from. Two archetypes anchor the
+range: an **engineering/construction brand** (charcoal + a corporate-blue accent, blueprint
+character) and a **software/dev brand** (green + dev-mono, friendly-SaaS character). Prior
+builds are saved locally as `~/Desktop/gtm-workspace/<client>-design-system/index.html` — read
+the most recent ones as gold-standard references before building.
 
 ## Output contract
 
@@ -38,7 +37,7 @@ Before building, lock:
 1. **Format** — default is single-file HTML page (this skill). Only branch to Figma if asked.
 2. **Visual direction** — `faithful` (codify the site as-is) · `elevate` (keep base + hero
    colors recognizable, lift typography/grid/character to Tier-1 — **the usual pick**) ·
-   `restyle` (new accent). client A & client B both chose **elevate**.
+   `restyle` (new accent). Both reference builds chose **elevate**.
 
 Skip if Viktor already stated them.
 
@@ -59,8 +58,8 @@ grep -oiE 'rgba?\([0-9, .]+\)' site.html | sort | uniq -c | sort -rn | head -12
 grep -oiE 'family=[A-Za-z+]+' site.html | sort -u            # Google Fonts = most reliable
 grep -oiE '<link[^>]+stylesheet[^>]*>' site.html | grep -oiE 'href="[^"]+"' | head
 ```
-If colors are sparse inline (e.g. client A), the brand colors live in external CSS — `curl`
-the top linked stylesheet(s) and grep those too.
+If colors are sparse inline (common on builder/WordPress sites), the brand colors live in
+external CSS — `curl` the top linked stylesheet(s) and grep those too.
 
 **Critical: filter WordPress/Gutenberg default-palette noise.** These hexes are theme
 defaults, NOT brand: `#0693e3 #00d084 #ff6900 #fcb900 #ff6900 #cf2e2e #9b51e0 #ab1dfe
@@ -81,7 +80,7 @@ From the real colors, build a disciplined scale (see `reference/structure.md`):
 - Rule: **60 / 30 / 10** — accent never dominates.
 
 **Fonts** — pick a 3-family system with a *character* font that earns the brand's nature
-(client A: IBM Plex Mono for engineering specs; client B: JetBrains Mono for "code library").
+(engineering brand → IBM Plex Mono for specs; dev/software brand → JetBrains Mono for the "code" feel).
 Display (geometric/grotesque) + Body (Inter) + Character (mono or distinctive). Prefer the
 site's real fonts when usable; otherwise pick a pairing that fits the vertical. See
 `reference/structure.md` font-pairing notes.
@@ -115,8 +114,8 @@ mkdir -p /tmp/<client>-ds && cp ".../<client>-design-system/index.html" /tmp/<cl
 ```
 Add a `.claude/launch.json` config pointing at the `/tmp` serve script (the sandbox blocks
 `--directory`; mirror existing entries). `preview_start` → `preview_resize` 1280×860 →
-`preview_console_logs` (expect none) → `preview_screenshot` the hero. Ports so far: client A
-4607, client B 4608 — use the next free one.
+`preview_console_logs` (expect none) → `preview_screenshot` the hero. Use the next free
+port (check existing `.claude/launch.json` entries — several are already taken).
 
 ---
 
@@ -139,7 +138,7 @@ curl -s -o /dev/null -w '%{http_code}\n' "https://<client>-design-system.netlify
 
 Write `project_<client>_design_system.md` + a one-line MEMORY.md pointer: client one-liner,
 palette hexes, fonts, signature components, file path, port, Netlify URL + site_id, and the
-"next: critique proposals → 2 templates" hook. Mirror the client A/client B entries.
+"next: critique proposals → 2 templates" hook. Mirror the existing client entries.
 
 ---
 
