@@ -33,6 +33,22 @@ Never a 1:1 clone of the previous one.
 
 ---
 
+## Requirements & integrations
+
+This plugin runs inside **Claude Code**. To set it up, connect the following — the skill tells
+you which step needs which:
+
+| Integration | Used for | Required? | Auth / setup |
+|---|---|---|---|
+| `WebFetch` + Bash (`curl`, `grep`) | Grounding the brand narrative + pulling REAL colours/fonts from the live CSS | **Built in** — no setup | — |
+| **Netlify** (CLI via `npx netlify-cli`) | Deploying the generated design system to a live URL | **Required** for the deploy step (Step 5). Without it you still get the local `index.html`. | `npx netlify-cli login` or set `NETLIFY_AUTH_TOKEN` |
+| **Apify** (MCP server) | Fallback scraper for JS-heavy / curl-blocked sites where colours & fonts aren't in the static HTML | Optional | Connect the Apify MCP server / set `APIFY_TOKEN` |
+| Claude Preview (local server) | Previewing & screenshotting the result before deploy | Optional | Built into Claude Code |
+
+No LLM API key is needed beyond Claude Code itself — colour/font extraction is deterministic
+(`curl` + `grep`), not model-driven. A **traffic/SEO source** (e.g. SimilarWeb or Ahrefs MCP)
+is *not* required here — it belongs to the GTM-research flow, not the design system.
+
 ## Install
 
 This plugin follows the standard Claude Code plugin layout. Either copy the skill into your
