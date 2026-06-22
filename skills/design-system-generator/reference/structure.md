@@ -1,6 +1,6 @@
 # Design-system HTML — anatomy & scaffold
 
-## The 14-section anatomy (sticky TOC links to each)
+## The 15-section anatomy (sticky TOC links to each)
 1. **Hero** — dark brand-bg with a motif (blueprint grid for engineering, dot-grid + `</>`
    for dev, etc.), mono kicker, big display H1 with one accent word, 1-line value prop,
    mono meta row, accent bottom-border.
@@ -23,6 +23,85 @@
 14. **Next-phase bridge** — dark section: 2 proposal templates (A call-deck / B send-proposal)
     + the ICP-swappable-blocks note (swap 3 blocks: pain / case / scope-price). This is
     Viktor's standard proposal architecture — keep it consistent across clients.
+15. **LinkedIn artifacts** — the brand applied to the 3 LinkedIn surfaces the client ships:
+    **profile banner** (1584×396), **post footer** (1080×156), **carousel cover** (1080×1350).
+    Brand-token-driven mockups so they restyle per client. See the LinkedIn-artifacts recipe below.
+
+## LinkedIn artifacts (section 15) — recipe
+
+Goal: show the client their brand living on LinkedIn, with 3 ready templates. These are
+**showcase mockups** rendered at proportional (not pixel-exact) size — caption each with its
+TRUE export size and note that the pixel-perfect asset is built in Figma via the `infographic`
+/ `linkedin-carousel` skills. Use ONLY brand tokens (`--acc-*`, `--ink-*`, `--paper`,
+`--font-display/-body/-mono`) so the whole block restyles when the palette changes.
+
+Lay the three in a responsive grid; banner spans the full row (it's wide), footer + cover
+share the second row. Each artifact sits in a bordered `.li-card` with a `<figcaption>`.
+
+```css
+.li-grid{display:grid;grid-template-columns:1fr;gap:28px}
+.li-card figcaption{font-family:var(--font-mono);font-size:12px;color:var(--ink-500);margin-top:10px}
+.li-art{border:1px solid var(--n-300);border-radius:10px;overflow:hidden;background:var(--white)}
+.li-row2{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}   /* footer + cover */
+@media(max-width:760px){.li-row2{grid-template-columns:1fr}}
+```
+
+**a) Profile banner — 1584×396 (4:1).** `aspect-ratio:1584/396`. Brand-bg (dark ink with the
+hero motif, OR paper for a light brand) + wordmark top-left + a one-line value prop (display)
++ accent keyline + domain/CTA bottom-right. **Keep the bottom-left ~16% clear** (avatar safe
+zone on personal profiles; company-page logo sits top-left). Use `clamp()` for type so it
+scales with the card.
+```html
+<div class="li-art" style="aspect-ratio:1584/396;position:relative;background:var(--ink-800)">
+  <div style="position:absolute;inset:0;padding:clamp(18px,3.4vw,52px);display:flex;flex-direction:column;justify-content:space-between">
+    <div style="font-family:var(--font-display);font-weight:800;color:var(--white);font-size:clamp(16px,2.4vw,30px)">[Client]<span style="color:var(--acc-500)">.</span></div>
+    <div style="font-family:var(--font-display);font-weight:700;color:var(--white);font-size:clamp(15px,2.6vw,34px);max-width:70%;line-height:1.15">[Value prop in one line]</div>
+    <div style="align-self:flex-end;font-family:var(--font-mono);color:var(--acc-500);font-size:clamp(11px,1.4vw,18px)">[client].com</div>
+  </div>
+</div>
+```
+
+**b) Post footer — 1080×156.** `aspect-ratio:1080/156`. The strip that ends every post:
+avatar circle (accent ring) OR logo mark left + name (display) + accent role/handle **pill**
+(white text — brand rule) + domain right + small brand mark. Mirror the B2B Global footer
+(`infographic` skill `makeAuthor`/`makeWordmark`): photo lives left, mark+domain right.
+```html
+<div class="li-art" style="aspect-ratio:1080/156;background:var(--white);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,2.6vw,30px);border-top:3px solid var(--acc-500)">
+  <div style="display:flex;align-items:center;gap:14px">
+    <div style="width:clamp(40px,5.4vw,58px);aspect-ratio:1;border-radius:50%;border:3px solid var(--acc-500);background:var(--ink-800)"></div>
+    <div>
+      <div style="font-family:var(--font-display);font-weight:800;color:var(--ink-800);font-size:clamp(15px,1.9vw,22px)">[Name / Brand]</div>
+      <span style="display:inline-block;margin-top:5px;background:var(--acc-500);color:var(--white);font-family:var(--font-mono);font-size:clamp(9px,1vw,12px);letter-spacing:.08em;padding:4px 10px;border-radius:7px">[ROLE / HANDLE]</span>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:clamp(32px,4vw,44px);aspect-ratio:1;border-radius:11px;background:var(--acc-500)"></div>
+    <span style="font-family:var(--font-mono);color:var(--acc-500);font-size:clamp(11px,1.3vw,16px)">[client].com</span>
+  </div>
+</div>
+```
+(The mark square is a placeholder — drop the client's symbol; for B2B Global it's the bowtie.)
+
+**c) Carousel cover — 1080×1350 (4:5).** `aspect-ratio:1080/1350`. Accent top bar (12px on the
+real export), mono eyebrow, big display title CAPS with ONE accent word, 1-line subtitle,
+`swipe →` accent, footer lockup (mark + name + handle + `1 / N`). Slides 2-N reuse body
+components (cards/lists) — note that under the cover.
+```html
+<div class="li-art" style="aspect-ratio:1080/1350;background:var(--white);position:relative;padding:clamp(20px,4vw,46px);display:flex;flex-direction:column">
+  <div style="position:absolute;top:0;left:0;right:0;height:6px;background:var(--acc-500)"></div>
+  <div style="font-family:var(--font-mono);color:var(--acc-500);font-size:clamp(10px,1.5vw,15px);letter-spacing:.14em;text-transform:uppercase;margin-top:8px">[Eyebrow]</div>
+  <div style="font-family:var(--font-display);font-weight:800;color:var(--ink-800);font-size:clamp(22px,5vw,54px);line-height:1.05;margin-top:auto">[BIG TITLE WITH <span style="color:var(--acc-500)">ONE ACCENT</span> WORD]</div>
+  <div style="font-family:var(--font-body);color:var(--ink-500);font-size:clamp(12px,2vw,22px);margin:14px 0 auto">[One-line subtitle]</div>
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:10px"><div style="width:clamp(26px,3.4vw,38px);aspect-ratio:1;border-radius:9px;background:var(--acc-500)"></div><span style="font-family:var(--font-display);font-weight:800;color:var(--ink-800);font-size:clamp(12px,1.6vw,18px)">[Name]</span></div>
+    <span style="font-family:var(--font-mono);color:var(--acc-500);font-size:clamp(11px,1.4vw,16px)">swipe →</span>
+  </div>
+</div>
+```
+
+Caption each: `Profile banner · 1584×396`, `Post footer · 1080×156`, `Carousel cover · 1080×1350
+(slides 2-N reuse body components)`. Add a one-line note under the block: "Pixel-perfect
+exports built in Figma via the `infographic` / `linkedin-carousel` skills."
 
 ## CSS-variable scaffold (adapt hexes per brand)
 ```css

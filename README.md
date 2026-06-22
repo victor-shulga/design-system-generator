@@ -20,11 +20,12 @@ It is the repeatable B2B Global flow, codified. Two archetypes it has produced, 
 3. **Designs a token system** — disciplined ink / accent / neutral / functional scales on a
    60/30/10 rule, plus a 3-family type system with a *character* font that fits the vertical
    (mono for engineering/dev, serif for finance, etc.).
-4. **Builds a single-file HTML design system** — 14-section anatomy: hero (with a brand
+4. **Builds a single-file HTML design system** — 15-section anatomy: hero (with a brand
    motif), logo, colour, type, spacing, buttons, tags, stats, cards, **1–2 signature
    components** (the client's own methodology — the spine of future proposals), pricing
-   table, callout, voice & do/don't, and a **proposal bridge** (call-deck vs send-proposal +
-   ICP-swappable blocks).
+   table, callout, voice & do/don't, a **proposal bridge** (call-deck vs send-proposal +
+   ICP-swappable blocks), and **LinkedIn artifacts** (profile banner, post footer, carousel
+   cover — brand-token mockups).
 5. **Previews & deploys** — local preview, then Netlify deploy under
    `https://<client>-design-system.netlify.app`.
 
@@ -86,7 +87,7 @@ skills/
     SKILL.md           # the 6-step flow
     reference/
       brand-extraction.md   # WP-noise list + curl/grep recipe + accent/ink/neutral HSL heuristic
-      structure.md          # 14-section anatomy, CSS-variable scaffold, font-pairing guidance
+      structure.md          # 15-section anatomy (+ LinkedIn artifacts), CSS scaffold, font pairing
 scripts/validate.sh    # CI structure check
 ```
 
