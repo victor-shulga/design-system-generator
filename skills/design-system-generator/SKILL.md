@@ -6,7 +6,8 @@ description: >
   Gutenberg default-palette noise), grounds tone/ICP/copy, builds an elevated-but-
   recognizable single-file HTML design system (hero, logo, color, type, spacing, buttons,
   tags, stats, cards, 1-2 signature components, pricing table, callout, voice, proposal
-  bridge), previews it, and deploys to Netlify under a clean subdomain. Trigger when
+  bridge, plus LinkedIn artifacts — banner, post footer, carousel cover — in the client's brand),
+  previews it, and deploys to Netlify under a clean subdomain. Trigger when
   Viktor says: "зроби дизайн систему для [client/URL]", "design system for [URL]",
   "брендкіт по сайту", "build a brand system", "дизайн-систему для клієнта", or pastes a
   client URL and asks for a design/brand system. NOT for LinkedIn creatives (use
@@ -89,14 +90,16 @@ site's real fonts when usable; otherwise pick a pairing that fits the vertical. 
 
 ## Step 3 — Build the single-file HTML
 
-Assemble the 14-section anatomy in `reference/structure.md`. Always include: sticky TOC,
+Assemble the 15-section anatomy in `reference/structure.md`. Always include: sticky TOC,
 hero (with a brand-appropriate background motif — blueprint grid, dot grid, etc.),
 logo/wordmark (2 backgrounds), color, type specimens, 8pt spacing, buttons, tags/badges
 (stack + trust + status), stats/trust bar (real numbers from Step 1), service + case
 cards, **1–2 signature components** (the client's own methodology/process — this is the
 spine of future proposals), pricing/scope table, callout/quote (real positioning line),
-voice & do/don't, and a **next-phase proposal bridge** (2 templates A call-deck / B send +
-ICP-swappable blocks — Viktor's standard proposal logic).
+voice & do/don't, a **next-phase proposal bridge** (2 templates A call-deck / B send +
+ICP-swappable blocks — Viktor's standard proposal logic), and **LinkedIn artifacts**
+(profile banner 1584×396 + post footer 1080×156 + carousel cover 1080×1350, brand-token
+mockups — see the LinkedIn-artifacts recipe in `reference/structure.md`).
 
 Make each client visually distinct — vary motif, radius (corporate=sharper, friendly=rounder),
 and signature components. Do NOT clone the previous client's layout 1:1.
