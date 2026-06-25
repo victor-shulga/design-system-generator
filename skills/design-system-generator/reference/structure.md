@@ -1,6 +1,6 @@
 # Design-system HTML — anatomy & scaffold
 
-## The 15-section anatomy (sticky TOC links to each)
+## The 16-section anatomy (sticky TOC links to each)
 1. **Hero** — dark brand-bg with a motif (blueprint grid for engineering, dot-grid + `</>`
    for dev, etc.), mono kicker, big display H1 with one accent word, 1-line value prop,
    mono meta row, accent bottom-border.
@@ -26,6 +26,10 @@
 15. **LinkedIn artifacts** — the brand applied to the 3 LinkedIn surfaces the client ships:
     **profile banner** (1584×396), **post footer** (1080×156), **carousel cover** (1080×1350).
     Brand-token-driven mockups so they restyle per client. See the LinkedIn-artifacts recipe below.
+16. **Graphic elements & icons** — the post/carousel visual kit: ~10 Pierre-style chart atoms
+    (Donut · Dot grid · Funnel · Curve · Bars · Concentric · Quadrant · Hub & spokes · Score
+    ring · Timeline) + a 6-8 line-icon set, all in brand tokens. Same vocabulary as the
+    `infographic` / `linkedin-carousel` skills, recolored per client. See the recipe below.
 
 ## LinkedIn artifacts (section 15) — recipe
 
@@ -102,6 +106,61 @@ components (cards/lists) — note that under the cover.
 Caption each: `Profile banner · 1584×396`, `Post footer · 1080×156`, `Carousel cover · 1080×1350
 (slides 2-N reuse body components)`. Add a one-line note under the block: "Pixel-perfect
 exports built in Figma via the `infographic` / `linkedin-carousel` skills."
+
+## Graphic elements & icons (section 16) — recipe
+
+Goal: hand the client a **reusable visual vocabulary** so every post/carousel card gets a
+real graphic, not text. These are the `infographic`-skill chart atoms (Pierre Herubel's
+vocabulary, approved 2026-06-19) **recolored to the client's tokens**. Render each as plain
+inline SVG inside a bordered tile in a grid; the client copies one into a 1080×1350 post and
+resizes.
+
+**Accent rule (state this in the section copy):** `--acc-500` = the punch, the positive/win
+state = a functional green, the negative/leak state = a functional red — **one accent per
+card**. If the brand has no functional colors, add `--good`/`--bad` to the scaffold (a green
++ red that don't clash with the accent); otherwise reuse a second accent for "win".
+
+Two sub-grids: **Chart atoms** (`repeat(5,1fr)`, 10 tiles) + **Line icons**
+(`repeat(8,1fr)`). Pick the icon set from the client's vertical (e.g. for iGaming: voice call,
+SMS, deposit, tracking, player, operator, reactivation, player-base; for dev: repo, deploy,
+bug, API, sprint, etc.). Mapping of atom → intent (carry verbatim into the section copy):
+proportion → Donut · share of a base → Dot grid · narrowing stages → Funnel · change over time
+→ Growth curve · magnitude/rank → Bar chart · narrow-to-niche → Concentric · positioning →
+Quadrant · hub→attributes (ICP/committee) → Hub & spokes · single metric → Score ring · two
+opposed states → Timeline.
+
+```css
+.gfx-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.gfx{border:1px solid var(--n-300);border-radius:14px;padding:16px 12px 14px;text-align:center;background:var(--white)}
+.gfx svg{display:block;margin:0 auto 10px}
+.gfx .nm{font-size:12px;font-weight:700;color:var(--ink-800)}
+.gfx .use{font-size:10.5px;color:var(--ink-500);margin-top:3px}
+.ico-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:14px}
+.ico{border:1px solid var(--n-300);border-radius:12px;padding:15px 8px 11px;text-align:center;color:var(--ink-800)}
+@media(max-width:760px){.gfx-grid{grid-template-columns:repeat(2,1fr)}.ico-grid{grid-template-columns:repeat(4,1fr)}}
+```
+
+Atom SVGs (all viewBox `0 0 90 90`, swap hexes for `var(--acc-500)` / `var(--good)` /
+`var(--bad)` / `var(--n-300)` / `var(--ink-500)`):
+
+- **Donut** — 4 `<circle cx=45 cy=45 r=33 fill=none stroke-width=14>` with `stroke-dasharray="LEN 1000"` + `transform="rotate(DEG 45 45)"`; circumference ≈ 207, biggest slice = accent, rest neutral tints. Start the first at `rotate(-90 …)`.
+- **Funnel** — 4 narrowing `<polygon>` tiers, accent with opacity ramp `1 → .7 → .5`, **last tier = `--good`** (the convert stage).
+- **Dot grid** — 5×4 `<circle r≈4.4>` on a 15px pitch; first N = accent, rest `--n-300`.
+- **Growth curve** — grey L-axis (`<path d="M14 78 V8 M14 78 H82">`), accent `<path>` curve (`stroke-width 2.6`), area fill = accent `opacity .12`, end dot accent.
+- **Bar chart** — grey L-axis + 4 `<rect rx=2>` rising, accent opacity ramp `.45/.62/.8/1`.
+- **Concentric** — 4 nested `<circle>` r `34/25/16/8`, accent opacity `.15/.4/.7/1`.
+- **Quadrant** — accent-tint `<rect>` + grey cross axes + 4 dots (3 accent, 1 second-accent/neutral).
+- **Hub & spokes** — centre accent disc (r10) + 6 grey spoke `<line>` to white `<circle r6 stroke=accent>` nodes on a r30 ring (angles `-90 + k·60°`).
+- **Score ring** — `--n-200` track ring + accent arc (`stroke-dasharray` for pct, `stroke-linecap=round`, `rotate(-90 …)`) + centre `<text>` number (display 900).
+- **Timeline** — grey `<line>` + `--bad` node left + `--good` node right + small grey mid ticks + two mono end labels.
+
+Line icons: 24×24, `fill=none stroke=currentColor stroke-width≈1.9 stroke-linecap=round`
+(inherit `--ink-800` from `.ico`; accent a few if useful). Mirror the client's signature flow
+(for the campaign/process pipeline use the SAME glyphs as the flow component).
+
+Close with a one-line note: "Each atom is plain inline SVG on the brand tokens — copy into a
+post/carousel and resize. Same vocabulary as the `infographic` / `linkedin-carousel` skills."
+Reference build (iGaming, recolored to blue): bswan-design-system `index.html` section 11.
 
 ## CSS-variable scaffold (adapt hexes per brand)
 ```css
