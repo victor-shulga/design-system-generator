@@ -97,9 +97,11 @@ logo/wordmark (2 backgrounds), color, type specimens, 8pt spacing, buttons, tags
 cards, **1–2 signature components** (the client's own methodology/process — this is the
 spine of future proposals), pricing/scope table, callout/quote (real positioning line),
 voice & do/don't, a **next-phase proposal bridge** (2 templates A call-deck / B send +
-ICP-swappable blocks — Viktor's standard proposal logic), and **LinkedIn artifacts**
+ICP-swappable blocks — Viktor's standard proposal logic), **LinkedIn artifacts**
 (profile banner 1584×396 + post footer 1080×156 + carousel cover 1080×1350, brand-token
-mockups — see the LinkedIn-artifacts recipe in `reference/structure.md`).
+mockups), and a **Graphic elements & icons** kit (~10 chart atoms + a line-icon set,
+recolored from the `infographic` skill vocabulary) — see both recipes in
+`reference/structure.md`.
 
 Make each client visually distinct — vary motif, radius (corporate=sharper, friendly=rounder),
 and signature components. Do NOT clone the previous client's layout 1:1.
