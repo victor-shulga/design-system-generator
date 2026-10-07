@@ -30,7 +30,7 @@ done < <(find "$root/skills" -name SKILL.md)
 [ "$found" -eq 1 ] || err "no skills/*/SKILL.md found"
 
 # Reference files referenced by the skill exist
-for r in brand-extraction structure; do
+for r in brand-extraction structure mobile-safe; do
   find "$root/skills" -path "*reference/$r.md" | grep -q . && ok "reference/$r.md" || err "missing reference/$r.md"
 done
 

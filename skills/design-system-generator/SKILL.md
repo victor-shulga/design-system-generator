@@ -103,6 +103,12 @@ mockups), and a **Graphic elements & icons** kit (~10 chart atoms + a line-icon 
 recolored from the `infographic` skill vocabulary) — see both recipes in
 `reference/structure.md`.
 
+**Mobile-safe is part of the build, not a polish pass.** Write every grid as
+`minmax(0,1fr)`, wrap every table in `.tbl-wrap`, keep layout grids out of inline styles,
+and paste the base block from `reference/mobile-safe.md` LAST in `<style>` (list ALL the
+page's multi-column grids in it). 8 earlier builds scrolled sideways on phones because this
+was left to "collapse grids on mobile".
+
 Make each client visually distinct — vary motif, radius (corporate=sharper, friendly=rounder),
 and signature components. Do NOT clone the previous client's layout 1:1.
 
@@ -119,7 +125,12 @@ mkdir -p /tmp/<client>-ds && cp ".../<client>-design-system/index.html" /tmp/<cl
 ```
 Add a `.claude/launch.json` config pointing at the `/tmp` serve script (the sandbox blocks
 `--directory`; mirror existing entries). `preview_start` → `preview_resize` 1280×860 →
-`preview_console_logs` (expect none) → `preview_screenshot` the hero. Use the next free
+`preview_console_logs` (expect none) → `preview_screenshot` the hero.
+
+**Mobile gate (blocking).** Resize to 360 and 390px and run the probe from
+`reference/mobile-safe.md` (or a headless 360/390px layout check if you have one).
+Any horizontal scroll = fix the source and re-run; do not deploy. Also eyeball the hero at 360px:
+text must not touch the screen edge (the `.hero-inner{padding:Xpx 0}` gutter trap). Use the next free
 port (check existing `.claude/launch.json` entries — several are already taken).
 
 ---
@@ -134,6 +145,11 @@ SID=$(python3 -c "import json;print(json.load(open('.netlify/state.json'))['site
 npx --yes netlify-cli api updateSite --data "{\"site_id\":\"$SID\",\"body\":{\"name\":\"<client>-design-system\"}}"
 curl -s -o /dev/null -w '%{http_code}\n' "https://<client>-design-system.netlify.app/"   # expect 200
 ```
+Deploy ONLY the published files: copy `index.html` (+ the assets it actually references)
+into a temp dir and `--dir` that, never the working folder — client folders collect drafts,
+creatives and badges that must not go public. Redeploys: `--site <UUID>` (not the name).
+After deploy: repeat the 360/390px check on the live URL.
+
 `updateSite` needs the real UUID `site_id` from `.netlify/state.json` — the subdomain alone
 404s. (Per [[reference_npm_cache_root_owned]] set `npm_config_cache=~/.npm-claude` for npx.)
 
@@ -149,4 +165,5 @@ palette hexes, fonts, signature components, file path, port, Netlify URL + site_
 
 ## Reference files
 - `reference/brand-extraction.md` — WP noise list, curl/grep recipe, accent/ink/neutral heuristic
-- `reference/structure.md` — 14-section anatomy, CSS-variable scaffold, font-pairing guidance
+- `reference/structure.md` — 16-section anatomy, CSS-variable scaffold, font-pairing guidance
+- `reference/mobile-safe.md` — MANDATORY mobile rules + base CSS block + the 360/390px gate

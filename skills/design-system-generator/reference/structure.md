@@ -18,6 +18,7 @@
     N-step delivery framework; or a process pipeline + a pricing/estimate card). This is the
     spine of future proposals — make it strong.
 11. **Pricing / scope table** — dark header, mono prices, zebra rows, `£X,XXX` placeholders.
+    Always inside `<div class="tbl-wrap">` (scrolls on its own on a phone).
 12. **Callout / quote** — one real positioning line or testimonial, accent left-bar.
 13. **Voice & tone** — voice chips + Do / Don't columns using the client's real copy.
 14. **Next-phase bridge** — dark section: 2 proposal templates (A call-deck / B send-proposal)
@@ -46,8 +47,8 @@ share the second row. Each artifact sits in a bordered `.li-card` with a `<figca
 .li-grid{display:grid;grid-template-columns:1fr;gap:28px}
 .li-card figcaption{font-family:var(--font-mono);font-size:12px;color:var(--ink-500);margin-top:10px}
 .li-art{border:1px solid var(--n-300);border-radius:10px;overflow:hidden;background:var(--white)}
-.li-row2{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}   /* footer + cover */
-@media(max-width:760px){.li-row2{grid-template-columns:1fr}}
+.li-row2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px}   /* footer + cover */
+@media(max-width:760px){.li-row2{grid-template-columns:minmax(0,1fr)}}
 ```
 
 **a) Profile banner — 1584×396 (4:1).** `aspect-ratio:1584/396`. Brand-bg (dark ink with the
@@ -71,7 +72,7 @@ avatar circle (accent ring) OR logo mark left + name (display) + accent role/han
 (`infographic` skill `makeAuthor`/`makeWordmark`): photo lives left, mark+domain right.
 ```html
 <div class="li-art" style="aspect-ratio:1080/156;background:var(--white);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,2.6vw,30px);border-top:3px solid var(--acc-500)">
-  <div style="display:flex;align-items:center;gap:14px">
+  <div style="display:flex;align-items:center;gap:14px;min-width:0">
     <div style="width:clamp(40px,5.4vw,58px);aspect-ratio:1;border-radius:50%;border:3px solid var(--acc-500);background:var(--ink-800)"></div>
     <div>
       <div style="font-family:var(--font-display);font-weight:800;color:var(--ink-800);font-size:clamp(15px,1.9vw,22px)">[Name / Brand]</div>
@@ -120,8 +121,8 @@ state = a functional green, the negative/leak state = a functional red — **one
 card**. If the brand has no functional colors, add `--good`/`--bad` to the scaffold (a green
 + red that don't clash with the accent); otherwise reuse a second accent for "win".
 
-Two sub-grids: **Chart atoms** (`repeat(5,1fr)`, 10 tiles) + **Line icons**
-(`repeat(8,1fr)`). Pick the icon set from the client's vertical (e.g. for iGaming: voice call,
+Two sub-grids: **Chart atoms** (`repeat(5,minmax(0,1fr))`, 10 tiles) + **Line icons**
+(`repeat(8,minmax(0,1fr))`). Pick the icon set from the client's vertical (e.g. for iGaming: voice call,
 SMS, deposit, tracking, player, operator, reactivation, player-base; for dev: repo, deploy,
 bug, API, sprint, etc.). Mapping of atom → intent (carry verbatim into the section copy):
 proportion → Donut · share of a base → Dot grid · narrowing stages → Funnel · change over time
@@ -130,14 +131,14 @@ Quadrant · hub→attributes (ICP/committee) → Hub & spokes · single metric �
 opposed states → Timeline.
 
 ```css
-.gfx-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.gfx-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
 .gfx{border:1px solid var(--n-300);border-radius:14px;padding:16px 12px 14px;text-align:center;background:var(--white)}
 .gfx svg{display:block;margin:0 auto 10px}
 .gfx .nm{font-size:12px;font-weight:700;color:var(--ink-800)}
 .gfx .use{font-size:10.5px;color:var(--ink-500);margin-top:3px}
-.ico-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:14px}
+.ico-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:14px}
 .ico{border:1px solid var(--n-300);border-radius:12px;padding:15px 8px 11px;text-align:center;color:var(--ink-800)}
-@media(max-width:760px){.gfx-grid{grid-template-columns:repeat(2,1fr)}.ico-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:760px){.gfx-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ico-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 ```
 
 Atom SVGs (all viewBox `0 0 90 90`, swap hexes for `var(--acc-500)` / `var(--good)` /
@@ -179,7 +180,13 @@ Reference build (iGaming, recolored to blue): a client design system, `index.htm
 ```
 Shared conventions: `section{padding:84px 0;border-bottom:1px solid var(--n-200)}`,
 `.wrap{max-width:1080px;margin:0 auto;padding:0 32px}`, sticky blurred TOC, mono section
-labels, hover lift on cards. Mobile: hide TOC, shrink hero H1, collapse grids to 1-2 col.
+labels, hover lift on cards. Hero/footer inner blocks set `padding-top/bottom` only — never
+`padding:Xpx 0` on a `.wrap` element (it wipes the side gutters).
+
+**Mobile = `reference/mobile-safe.md` (mandatory):** every grid track `minmax(0,1fr)`, every
+multi-column grid listed in the mobile `@media`, no layout grids in inline styles, tables in
+`.tbl-wrap`, specimen rows wrap with `clamp()` sizes, base block pasted last in `<style>`,
+360/390px gate before deploy. Hide TOC and shrink hero H1 as before.
 
 ## Font pairing guidance (pick a CHARACTER font that fits the vertical)
 - Display = geometric/grotesque (Space Grotesk, Plus Jakarta Sans, Archivo, Clash) for warmth/structure.
