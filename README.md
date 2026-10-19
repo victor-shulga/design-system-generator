@@ -100,3 +100,7 @@ and fonts in the browser with no LLM. This plugin is the full, human-in-the-loop
 ## License
 
 MIT © 2026 Victor Shulga
+
+---
+
+Built by [Victor Shulga](https://victorshulga.com), Fractional CRO for B2B service companies. Full skill stack: [victorshulga.com/stack](https://victorshulga.com/stack/).
